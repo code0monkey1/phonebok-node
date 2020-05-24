@@ -1,5 +1,5 @@
         const express=require("express")
-        const morgan=require("morgan")
+        // const morgan=require("morgan")
         const cors=require('cors')
         const app= express()
         
@@ -7,10 +7,10 @@
         
         app.use(cors())
         
-        morgan.token("type" , (req,res)=> JSON.stringify(req.body) )
+        // morgan.token("type" , (req,res)=> JSON.stringify(req.body) )
 
-        app.use(morgan(`:method :url :status :res[content-length] - :response-time ms :type`))
-         console.log("Logging that this is the node module running !!!")
+        // app.use(morgan(`:method :url :status :res[content-length] - :response-time ms :type`))
+        //  console.log("Logging that this is the node module running !!!")
         // custom middleware 
         // const requestLogger = (request,response,next)=>{
         //     console.log("metnod: ",request.method ) 
@@ -55,9 +55,9 @@
 
         } )
 
-        // app.get("/",(request,response)=>{
-        //     response.send("<div> Hello node </div>")
-        // })
+        app.get("/",(request,response)=>{
+            response.send("<div> Hello node </div>")
+        })
 
         app.get("/info",(request,response)=>{
             
