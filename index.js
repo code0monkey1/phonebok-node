@@ -55,9 +55,9 @@
 
         } )
 
-        app.get("/",(request,response)=>{
-            response.send("<div> Hello node </div>")
-        })
+        // app.get("/",(request,response)=>{
+        //     response.send("<div> Hello node </div>")
+        // })
 
         app.get("/info",(request,response)=>{
             
