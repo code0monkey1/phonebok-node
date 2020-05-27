@@ -59,16 +59,16 @@
             response.send("<div> Hello node </div>")
         })
 
-        // app.get("/info",(request,response)=>{
+        app.get("/info",(request,response)=>{
             
-        //     response.send(
-        //         `<div>Phonebook has info for ${persons.length} people </div>
-        //         <br/>
-        //         <div> ${Date()} </div>`
+            response.send(
+                `<div>Phonebook has info for ${persons.length} people </div>
+                <br/>
+                <div> ${Date()} </div>`
             
-        //     )
-        //     }
-        // )
+            )
+            }
+        )
         app.get("/api/persons/:id" ,(request,response)=>{
             
             const id=Number(request.params.id);
