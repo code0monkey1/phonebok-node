@@ -1,6 +1,7 @@
         const express=require("express")
         const app= express()
         app.use(express.json())
+        app.use(express.static('build'))
         
         const morgan=require("morgan")
         morgan.token("type" , (req,res)=> JSON.stringify(req.body) )
@@ -9,7 +10,7 @@
         const cors=require('cors')       
         app.use(cors())
 
-      
+       
         //  console.log("Logging that this is the node module running !!!")
         // custom middleware 
         // const requestLogger = (request,response,next)=>{
