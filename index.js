@@ -1,13 +1,15 @@
         const express=require("express")
-        // const morgan=require("morgan")
         const app= express()
         app.use(express.json())
+        
+        const morgan=require("morgan")
+        morgan.token("type" , (req,res)=> JSON.stringify(req.body) )
+        app.use(morgan(`:method :url :status :res[content-length] - :response-time ms :type`))
+      
         const cors=require('cors')       
         app.use(cors())
-        
-        // morgan.token("type" , (req,res)=> JSON.stringify(req.body) )
 
-        // app.use(morgan(`:method :url :status :res[content-length] - :response-time ms :type`))
+      
         //  console.log("Logging that this is the node module running !!!")
         // custom middleware 
         // const requestLogger = (request,response,next)=>{
@@ -49,7 +51,7 @@
 
         app.get("/api/persons",(request,response)=>{
         
-            response.json(persons)
+            response.send(persons)
 
         } )
 
@@ -57,23 +59,24 @@
             response.send("<div> Hello node </div>")
         })
 
-        app.get("/info",(request,response)=>{
+        // app.get("/info",(request,response)=>{
             
-            response.send(
-                `<div>Phonebook has info for ${persons.length} people </div>
-                <br/>
-                <div> ${Date()} </div>`
+        //     response.send(
+        //         `<div>Phonebook has info for ${persons.length} people </div>
+        //         <br/>
+        //         <div> ${Date()} </div>`
             
-            )
-            }
-        )
+        //     )
+        //     }
+        // )
         app.get("/api/persons/:id" ,(request,response)=>{
             
             const id=Number(request.params.id);
 
             const entry = persons.find( person => person.id===id)
             
-            response.json(entry)
+           if(entry) response.send(entry)
+           else response.status(404).end()
         })
 
         app.delete("/api/persons/:id" ,(request,response)=>{
